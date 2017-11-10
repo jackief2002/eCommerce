@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+    <head>
+        <title> eCommerce </title>
+        <style>
+            img{
+                width:150px;
+
+            }
+            input{
+                width:80px;
+            }
+
+
+
+        </style>
+        <script>
+            function purchase(){
+                var rprice1 = 2.5;
+                var rprice2 = 20;
+                var rprice3 = 4;
+                var wprice1 = .5;
+                var wprice2 = 5;
+                var wprice3 = 1;
+                var quantity1 = document.getElementById("quantity1");
+                var quantity2 = document.getElementById("quantity2");
+                var quantity3 = document.getElementById("quantity3");
+                var csubtotal = (rprice1 * parseInt(quantity1.value)) + (rprice2 * parseInt(quantity2.value)) + (rprice3 * parseInt(quantity3.value));
+                var tax = csubtotal * 0.0875 
+                var shipping = 0
+                var output = document.getElementById("output")
+                var build = "Subtotal: $" + csubtotal.toFixed(2)  + "<br>"
+                build += "Tax: $" + tax.toFixed(2)  + "<br>"
+                if(csubtotal < 100){
+                    shipping += 25
+                } else if(csubtotal >= 100 && csubtotal <= 200){
+                    shipping += 10
+                } else if(csubtotal > 200){
+                    shipping += 0
+                }
+                
+                build += "Shipping: $" + shipping.toFixed(2)  + "<br>";
+                build += "---------------------" + "<br>";
+                var total = csubtotal + tax + shipping; 
+                var discount = 0
+                
+                if(quantity1.value >= 1 && quantity2.value >= 1 && quantity3.value >= 10){
+                    discount = total * 0.1;
+                    var discountprice = total -= discount 
+                    build += "Discount Total: $" + discountprice.toFixed(2)  
+                } else {
+                    build += "Total: $" + total.toFixed(2);
+                }
+    
+                
+                
+				
+                
+                
+                var totalitemssold = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value)
+				var cosubtotal = (wprice1 * parseInt(quantity1.value)) + (wprice2 * parseInt(quantity2.value)) + (wprice3 * parseInt(quantity3.value));
+				var profit = csubtotal - cosubtotal;
+				var build2 = "Total Items Sold: " + totalitemssold + "\n";
+				build2 += "Company Subtotal: " + cosubtotal + "\n";
+				build2 += "Profit: " + profit;
+				console.log(build2);
+
+                output.innerHTML = build
+				
+				
+
+
+            }
+
+
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1 style="text-align:center;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><u>Welcome to Jackie's Corner</u></h1>
+            <h2 style="text-align:center;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Get Jackie's Bundle Deal ! Buy at least one pack of straws, one pair of headphones and 10 gallons of peach ice tea and get 10% off.</h2>
+
+            <h2 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> Straws  </h2>
+            <img src = "Project\straws.jpg">
+            <span "font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> $2.5 </span>
+            <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            Enjoy your beverages with these fun plastic straws. Pack comes with an assortment of red, orange, yellow, green and blue.
+            </p>
+            <input id = "quantity1" type = "text" placeholder = "Enter Quantity Here" style="font-family:calibri;">
+        </div>
+        <div>
+            <h2 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> Philips Bass Rich Earbuds (Gold) </h2>
+            <img src = "Project\headphones.jpg">
+            <span "font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> $20 </span>
+            <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            Enjoy music and calls in high-quality sound. Oval tube inserts come with three ear cap sizes for opitmal fit and deep bass. Vacuum metalized housings boast sleek classy finish. Inline mic and control make hands-free calls convenient.
+            </p>
+            <input id = "quantity2" type = "text" placeholder = "Enter Quantity Here" style="font-family:calibri;">
+        </div>
+        <div>
+            <h2 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> Snapple Peach Ice Tea (One gallon) </h2>
+            <img src = "Project\snapple.jpg">
+            <span "font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> $4 </span>
+            <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            To peach their own. Smooth Snapple tea, perfect peach flavor. We made it just for you from the Best Stuff on Earth.
+            </p>
+            <input id = "quantity3" type = "text" placeholder = "Enter Quantity Here" style="font-family:calibri;">
+        </div>
+        <button onclick = "purchase();"> Purchase </button>
+        <div id = "output"></div>
+        <body style="background-color:rgb(230, 200, 222);"></body>
+
+
+
+
+    </body>
+</html>
